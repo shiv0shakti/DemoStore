@@ -5,7 +5,7 @@
     <item
         android:id="@+id/sunsetFavsDelete"
         android:title="@string/sunset_delete"
-        android:icon="@drawable/ic_delete"
+        android:icon="@drawable/ic_sunset_delete"
         app:showAsAction="always"
     />
     <item

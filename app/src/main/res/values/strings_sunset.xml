@@ -9,6 +9,10 @@
     <string name="sunset_make_fav">Favourite</string>
     <string name="sunset_favs">View Favourites</string>
     <string name="sunset_help">Help</string>
+    <string name="sunset_saved_to_favs">Saved to favourites &lt;3</string>
+    <string name="sunset_fav_title">Favourite</string>
+    <string name="sunset_nothing">Nothing to save</string>
+    <string name="sunset_nothing_to_del">Nothing to delete</string>
 
     <string name="sunset_sunsrise_label">Sunrise</string>
     <string name="sunset_sunset_label">Sunset</string>
@@ -29,4 +33,16 @@
     <string name="sunset_solar_noon_value">Solar Noon Goes Here</string>
     <string name="sunset_golden_hour_value">Golden Hour Goes Here</string>
     <string name="sunset_day_length_value">Day Length Goes Here</string>
+
+    <string name="sunset_help_main">Enter a latitude and longitude and search to see sunset and sunrise data. Press the heart icon to add to favourites. Use the help menu to view favourites.</string>
+    <string name="sunset_help_favs">Tap on an item to view details. Press the delete icon to delete the item. Use the help menu to go back to Search.</string>
+
+    <string name="sunset_ok">OK</string>
+    <string name="sunset_del_fav_msg">Do you want to delete Favourite #</string>
+    <string name="sunset_del_fav_title">Delete Favourite</string>
+    <string name="sunset_del_succ">You deleted favourite #</string>
+    <string name="sunset_yes">Yes</string>
+    <string name="sunset_no">No</string>
+    <string name="sunset_undo">Undo</string>
+    <string name="sunset_delete">Delete</string>
 </resources>

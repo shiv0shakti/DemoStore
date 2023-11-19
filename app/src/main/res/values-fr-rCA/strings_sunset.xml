@@ -8,8 +8,11 @@
     <string name="sunset_search">Recherche</string>
     <string name="sunset_make_fav">Favoris</string>
     <string name="sunset_favs">Voir les favoris</string>
-    <string name="sunset_help">aider</string>
+    <string name="sunset_help">Aider</string>
+    <string name="sunset_search_activity">Recherche</string>
+    <string name="sunset_nothing_to_del">Rien à supprimer</string>
 
+    <string name="sunset_saved_to_favs">Enregistré dans les favoris &lt;3</string>
     <string name="sunset_sunsrise_label">Lever de soleil</string>
     <string name="sunset_sunset_label">Lever de soleil</string>
     <string name="sunset_first_light_label">Première lumière</string>
@@ -29,4 +32,16 @@
     <string name="sunset_solar_noon_value">Le midi solaire va ici</string>
     <string name="sunset_golden_hour_value">L\'heure d\'or va ici</string>
     <string name="sunset_day_length_value">La longueur du jour va ici</string>
+    <string name="sunset_fav_title">Favori</string>
+    <string name="sunset_help_main">Saisissez une latitude et une longitude et effectuez une recherche pour voir les données relatives au coucher et au lever du soleil.Appuyez sur l\'icône en forme de cœur pour l\'ajouter aux favoris. Utilisez le menu d\'aide pour afficher les favoris.</string>
+    <string name="sunset_ok">OK</string>
+    <string name="sunset_del_fav_msg">Voulez-vous supprimer les favoris #</string>
+    <string name="sunset_del_fav_title">Supprimer le favori</string>
+    <string name="sunset_del_succ">Vous avez supprimé le favori #</string>
+    <string name="sunset_yes">Oui</string>
+    <string name="sunset_no">Non</string>
+    <string name="sunset_undo">Annuler</string>
+    <string name="sunset_nothing">Rien à sauver</string>
+    <string name="sunset_help_favs">Appuyez sur un élément pour en afficher les détails. Appuyez sur l\'icône de suppression pour supprimer l\'élément. Utilisez le menu d\'aide pour revenir à la recherche.</string>
+    <string name="sunset_delete">Supprimer</string>
 </resources>

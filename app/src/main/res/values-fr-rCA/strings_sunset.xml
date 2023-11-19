@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sunset_app_name">Lever &amp; coucher de soleil</string>
+    <string name="sunset_lat">La Lattitude</string>
+    <string name="sunset_lat_hint">Entrez la latitude…</string>
+    <string name="sunset_long">La Longitude</string>
+    <string name="sunset_long_hint">Entrez la longitude…</string>
+    <string name="sunset_search">Recherche</string>
+    <string name="sunset_make_fav">Favoris</string>
+    <string name="sunset_favs">Voir les favoris</string>
+    <string name="sunset_help">aider</string>
+
+    <string name="sunset_sunsrise_label">Lever de soleil</string>
+    <string name="sunset_sunset_label">Lever de soleil</string>
+    <string name="sunset_first_light_label">Première lumière</string>
+    <string name="sunset_last_light_label">Dernière lumière</string>
+    <string name="sunset_dawn_label">Aube</string>
+    <string name="sunset_dusk_label">Crépuscule</string>
+    <string name="sunset_solar_noon_label">Le midi solaire</string>
+    <string name="sunset_golden_hour_label">L\'heure d\'or</string>
+    <string name="sunset_day_length_label">La longueur du jour</string>
+
+    <string name="sunset_sunsrise_value">Le lever du soleil va ici</string>
+    <string name="sunset_sunset_value">Le coucher de soleil va ici</string>
+    <string name="sunset_first_light_value">Le premier feu va ici</string>
+    <string name="sunset_last_light_value">La dernière lumière va ici</string>
+    <string name="sunset_dawn_value">L\'aube va ici</string>
+    <string name="sunset_dusk_value">Le crépuscule va ici</string>
+    <string name="sunset_solar_noon_value">Le midi solaire va ici</string>
+    <string name="sunset_golden_hour_value">L\'heure d\'or va ici</string>
+    <string name="sunset_day_length_value">La longueur du jour va ici</string>
+</resources>

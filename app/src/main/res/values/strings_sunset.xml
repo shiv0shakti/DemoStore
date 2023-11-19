@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sunset_app_name">Sunrise &amp; Sunset lookup</string>
+    <string name="sunset_lat">Latitude</string>
+    <string name="sunset_lat_hint">Enter the Latitude…</string>
+    <string name="sunset_long">Longitude</string>
+    <string name="sunset_long_hint">Enter the Longitude…</string>
+    <string name="sunset_search">Search</string>
+    <string name="sunset_make_fav">Favourite</string>
+    <string name="sunset_favs">View Favourites</string>
+    <string name="sunset_help">Help</string>
+
+    <string name="sunset_sunsrise_label">Sunrise</string>
+    <string name="sunset_sunset_label">Sunset</string>
+    <string name="sunset_first_light_label">First Light</string>
+    <string name="sunset_last_light_label">Last Light</string>
+    <string name="sunset_dawn_label">Dawn</string>
+    <string name="sunset_dusk_label">Dusk</string>
+    <string name="sunset_solar_noon_label">Solar Noon</string>
+    <string name="sunset_golden_hour_label">Golden Hour</string>
+    <string name="sunset_day_length_label">Day Length</string>
+
+    <string name="sunset_sunsrise_value">Sunrise Goes Here</string>
+    <string name="sunset_sunset_value">Sunset Goes Here</string>
+    <string name="sunset_first_light_value">First Light Goes Here</string>
+    <string name="sunset_last_light_value">Last Light Goes Here</string>
+    <string name="sunset_dawn_value">Dawn Goes Here</string>
+    <string name="sunset_dusk_value">Dusk Goes Here</string>
+    <string name="sunset_solar_noon_value">Solar Noon Goes Here</string>
+    <string name="sunset_golden_hour_value">Golden Hour Goes Here</string>
+    <string name="sunset_day_length_value">Day Length Goes Here</string>
+</resources>

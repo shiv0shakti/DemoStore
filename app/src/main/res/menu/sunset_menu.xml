@@ -9,13 +9,14 @@
         app:showAsAction="always"
     />
     <item
+        android:id="@+id/sunsetFavsDelete"
+        android:title="@string/sunset_delete"
+        android:icon="@drawable/ic_sunset_delete"
+        app:showAsAction="always"
+        />
+    <item
         android:id="@+id/sunsetHelp"
         android:title="@string/sunset_help"
-        app:showAsAction="never"
-    />
-    <item
-        android:id="@+id/sunsetFavs"
-        android:title="@string/sunset_favs"
         app:showAsAction="never"
     />
 </menu>

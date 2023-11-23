@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="sunset_app_name">Lever &amp; coucher de soleil</string>
+    <string name="sunset_app_name">Coucher API</string>
     <string name="sunset_lat">La Lattitude</string>
     <string name="sunset_lat_hint">Entrez la latitude…</string>
     <string name="sunset_long">La Longitude</string>

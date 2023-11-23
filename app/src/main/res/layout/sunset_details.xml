@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sunsetD"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/sunriseLabel"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/sunset_sunsrise_label"
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sunsetLabel"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/sunset_sunset_label"
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sunriseLabel" />
+
+    <TextView
+        android:id="@+id/firstLightLabel"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/sunset_first_light_label"
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sunsetLabel" />
+
+    <TextView
+        android:id="@+id/lastLightLabel"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/sunset_last_light_label"
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstLightLabel" />
+
+    <TextView
+        android:id="@+id/dawnLabel"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/sunset_dawn_label"
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lastLightLabel" />
+
+    <TextView
+        android:id="@+id/duskLabel"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/sunset_dusk_label"
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dawnLabel" />
+
+    <TextView
+        android:id="@+id/solarNoonLabel"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/sunset_solar_noon_label"
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/duskLabel" />
+
+    <TextView
+        android:id="@+id/goldenHourLabel"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/sunset_golden_hour_label"
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/solarNoonLabel" />
+
+    <TextView
+        android:id="@+id/dayLengthLabel"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/sunset_day_length_label"
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goldenHourLabel" />
+
+    <TextView
+        android:id="@+id/sunriseValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/sunset_sunsrise_value"
+        app:layout_constraintStart_toEndOf="@+id/sunriseLabel"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sunsetValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/sunset_sunset_value"
+        app:layout_constraintStart_toEndOf="@+id/sunsetLabel"
+        app:layout_constraintTop_toBottomOf="@+id/sunriseValue" />
+
+    <TextView
+        android:id="@+id/firstLightValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/sunset_first_light_value"
+        app:layout_constraintStart_toEndOf="@+id/firstLightLabel"
+        app:layout_constraintTop_toBottomOf="@+id/sunsetValue" />
+
+    <TextView
+        android:id="@+id/lastLightValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/sunset_last_light_value"
+        app:layout_constraintStart_toEndOf="@+id/lastLightLabel"
+        app:layout_constraintTop_toBottomOf="@+id/firstLightValue" />
+
+    <TextView
+        android:id="@+id/dawnValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/sunset_dawn_value"
+        app:layout_constraintStart_toEndOf="@+id/dawnLabel"
+        app:layout_constraintTop_toBottomOf="@+id/lastLightValue" />
+
+    <TextView
+        android:id="@+id/duskValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/sunset_dusk_value"
+        app:layout_constraintStart_toEndOf="@+id/duskLabel"
+        app:layout_constraintTop_toBottomOf="@+id/dawnValue" />
+
+    <TextView
+        android:id="@+id/solarNoonValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/sunset_solar_noon_value"
+        app:layout_constraintStart_toEndOf="@+id/solarNoonLabel"
+        app:layout_constraintTop_toBottomOf="@+id/duskValue" />
+
+    <TextView
+        android:id="@+id/goldenHourValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/sunset_golden_hour_value"
+        app:layout_constraintStart_toEndOf="@+id/goldenHourLabel"
+        app:layout_constraintTop_toBottomOf="@+id/solarNoonValue" />
+
+    <TextView
+        android:id="@+id/dayLengthValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/sunset_day_length_value"
+        app:layout_constraintStart_toEndOf="@+id/dayLengthLabel"
+        app:layout_constraintTop_toBottomOf="@+id/goldenHourValue" />
+
+    <Button
+        android:id="@+id/sunsetSaveBtn"
+        android:layout_width="176dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/sunset_make_fav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dayLengthLabel" />
+
+    <Button
+        android:id="@+id/sunsetDeleteBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#EF6461"
+        android:text="@string/sunset_delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sunsetSaveBtn" />
+</androidx.constraintlayout.widget.ConstraintLayout>

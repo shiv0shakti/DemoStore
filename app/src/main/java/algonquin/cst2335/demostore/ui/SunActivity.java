@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import algonquin.cst2335.demostore.R;
+import algonquin.cst2335.demostore.data.SunsetApiData;
 import algonquin.cst2335.demostore.data.SunsetData;
 import algonquin.cst2335.demostore.data.SunsetViewModel;
 import algonquin.cst2335.demostore.databinding.ActivitySunBinding;
@@ -53,33 +55,58 @@ public class SunActivity extends AppCompatActivity {
     class MyRowHolder extends RecyclerView.ViewHolder {
         TextView lat;
         TextView lng;
-        TextView sunrise;
-        TextView sunset;
-        TextView dawn;
-        TextView dusk;
 
         public MyRowHolder(@NonNull View itemView) {
             super(itemView);
             lat = itemView.findViewById(R.id.sunsetFavTitleLat);
             lng = itemView.findViewById(R.id.sunsetFavTitleLng);
-            sunrise = itemView.findViewById(R.id.sunsetFavSunriseValue);
-            sunset = itemView.findViewById(R.id.sunsetFavSunsetValue);
-            dawn = itemView.findViewById(R.id.sunsetFavDawnValue);
-            dusk = itemView.findViewById(R.id.sunsetFavDuskValue);
 
             itemView.setOnClickListener(view -> {
                 selectedItemPos = getAdapterPosition();
                 canDelete = true;
 
                 SunsetData selectedData = dataList.get(getAdapterPosition());
-                SunDetailsFragment detailsFragment = new SunDetailsFragment(selectedData, true);
-                myAdapter.notifyDataSetChanged();
 
-                getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragmentLocation, detailsFragment)
-                    .addToBackStack("")
-                    .commit();
+                reqUrl = "https://api.sunrisesunset.io/json?lat=" + selectedData.getLat() + "&lng=" + selectedData.getLng() +"&timezone=EST&date=today";
+
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, reqUrl, null,
+                    (response) -> {
+                        try {
+                            JSONObject result = response.getJSONObject("results");
+                            Log.d(TAG, result.toString());
+
+                            String sunrise = result.getString("sunrise");
+                            String sunset = result.getString("sunset");
+                            String firstLight = result.getString("first_light");
+                            String lastLight = result.getString("last_light");
+                            String dawn = result.getString("dawn");
+                            String dusk = result.getString("dusk");
+                            String solarNoon = result.getString("solar_noon");
+                            String goldenHour = result.getString("golden_hour");
+                            String dayLength = result.getString("day_length");
+
+                            SunsetApiData detailsData = new SunsetApiData(
+                                    selectedData.getLat(), selectedData.getLng(),
+                                    sunrise, sunset, firstLight,
+                                    lastLight, dawn, dusk, solarNoon,
+                                    goldenHour, dayLength);
+
+                            myAdapter.notifyDataSetChanged();
+
+                            SunDetailsFragment detailsFragment = new SunDetailsFragment(detailsData, true);
+                            getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.fragmentLocation, detailsFragment)
+                                    .addToBackStack("")
+                                    .commit();
+                        } catch (JSONException exception) {
+                            Toast.makeText(SunActivity.this, R.string.sunset_error, Toast.LENGTH_LONG).show();
+                        }
+                    }, (error) -> {
+                        Toast.makeText(SunActivity.this, R.string.sunset_http_error, Toast.LENGTH_LONG).show();
+                    }
+                );
+                requestQueue.add(request);
             });
         }
     }
@@ -125,6 +152,9 @@ public class SunActivity extends AppCompatActivity {
             @Override
             public MyRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 SunsetFavItemBinding svBinding = SunsetFavItemBinding.inflate(getLayoutInflater());
+                svBinding.getRoot().setLayoutParams(new ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
                 return new MyRowHolder(svBinding.getRoot());
             }
 
@@ -134,13 +164,10 @@ public class SunActivity extends AppCompatActivity {
 
                 holder.lat.setText(sunsetData.getLat());
                 holder.lng.setText(sunsetData.getLng());
-                holder.sunrise.setText(sunsetData.getSunrise());
-                holder.sunset.setText(sunsetData.getSunset());
-                holder.dawn.setText(sunsetData.getDawn());
-                holder.dusk.setText(sunsetData.getDusk());
 
                 if (selectedItemPos == position) {
-                    holder.itemView.setBackgroundColor(Color.parseColor("#FED07A"));
+                    holder.itemView.setBackgroundColor(
+                            getResources().getColor(R.color.sunset_highlight, getTheme()));
                 } else {
                     holder.itemView.setBackgroundColor(Color.TRANSPARENT);
                 }
@@ -190,7 +217,7 @@ public class SunActivity extends AppCompatActivity {
                             String goldenHour = result.getString("golden_hour");
                             String dayLength = result.getString("day_length");
 
-                            SunsetData detailsData = new SunsetData(latText, longText, sunrise, sunset, firstLight,
+                            SunsetApiData detailsData = new SunsetApiData(latText, longText, sunrise, sunset, firstLight,
                                     lastLight, dawn, dusk, solarNoon, goldenHour, dayLength);
 
                             SunDetailsFragment detailsFragment = new SunDetailsFragment(detailsData, false);
@@ -207,6 +234,8 @@ public class SunActivity extends AppCompatActivity {
                     }
                 );
                 requestQueue.add(request);
+            } else {
+                Toast.makeText(this, R.string.sunset_no_search_terms, Toast.LENGTH_SHORT).show();
             }
         });
     }

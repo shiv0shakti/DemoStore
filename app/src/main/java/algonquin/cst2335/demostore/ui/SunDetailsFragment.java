@@ -1,7 +1,6 @@
 package algonquin.cst2335.demostore.ui;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +13,17 @@ import androidx.lifecycle.ViewModelProvider;
 import java.util.ArrayList;
 
 import algonquin.cst2335.demostore.R;
+import algonquin.cst2335.demostore.data.SunsetApiData;
 import algonquin.cst2335.demostore.data.SunsetData;
 import algonquin.cst2335.demostore.data.SunsetViewModel;
 import algonquin.cst2335.demostore.databinding.SunsetDetailsBinding;
 
 public class SunDetailsFragment extends Fragment {
-    private SunsetData sunsetData;
+    private SunsetApiData sunsetData;
     private SunsetViewModel sunsetViewModel;
     private boolean isFavourite;
 
-    public SunDetailsFragment(SunsetData sunsetData, boolean isFavourite) {
+    public SunDetailsFragment(SunsetApiData sunsetData, boolean isFavourite) {
         this.sunsetData = sunsetData;
         this.isFavourite = isFavourite;
     }
@@ -56,7 +56,9 @@ public class SunDetailsFragment extends Fragment {
 
         binding.sunsetSaveBtn.setOnClickListener(click -> {
             if (!this.isFavourite) {
-                list.add(sunsetData);
+                SunsetData newSunsetData = new SunsetData(sunsetData.getLat(), sunsetData.getLng());
+
+                list.add(newSunsetData);
                 sunsetViewModel.dataList.postValue(list);
             }
             getParentFragmentManager().beginTransaction().remove(this).commit();

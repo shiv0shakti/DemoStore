@@ -8,5 +8,4 @@ import java.util.ArrayList;
 public class SunsetViewModel extends ViewModel {
     public MutableLiveData<ArrayList<SunsetData>> dataList = new MutableLiveData<>();
     public MutableLiveData<SunsetData> selectedSunsetData = new MutableLiveData<>();
-
 }

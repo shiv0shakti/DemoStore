@@ -20,7 +20,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -40,6 +47,10 @@ public class SunActivity extends AppCompatActivity {
     private int deletePosition;
     private View posView;
     private boolean canDelete = false;
+    private RequestQueue requestQueue = null;
+
+    private String reqUrl;
+
     class MyRowHolder extends RecyclerView.ViewHolder {
         TextView pos;
         TextView sunrise;
@@ -70,6 +81,8 @@ public class SunActivity extends AppCompatActivity {
         binding = ActivitySunBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.sunsetMainToolbar);
+
+        requestQueue = Volley.newRequestQueue(this);
 
         SharedPreferences preferences = getSharedPreferences("SunsetData", Context.MODE_PRIVATE);
         String latData = preferences.getString("Latitude", "");
@@ -123,27 +136,21 @@ public class SunActivity extends AppCompatActivity {
             }
         });
 
-        // add test data
-        SunsetData sunsetDataTest1 = new SunsetData(
-                "6:00 AM",
-                "7:30 PM",
-                "5:15 AM",
-                "8:15 PM"
-        );
-        SunsetData sunsetDataTest2 = new SunsetData(
-                "7:15 AM",
-                "8:00 PM",
-                "6:45 AM",
-                "8:30 PM"
-        );
-        dataList.add(sunsetDataTest1);
-        myAdapter.notifyItemInserted(dataList.size() - 1);
-        dataList.add(sunsetDataTest2);
         sunsetViewModel.dataList.postValue(dataList);
         myAdapter.notifyItemInserted(dataList.size() - 1);
 
         sunsetViewModel.dataList.observe(this, (list) -> {
-         Log.d(TAG, "ADDED MSG" + list.toString());
+            Log.d(TAG, "ADDED MSG" + list.toString());
+            if (list.size() > 0) {
+                SunsetData addedItem = list.get(list.size() - 1);
+                int pos = list.size() - 1;
+
+                Log.d(TAG, "ADDED THIS" + addedItem.toString());
+                Log.d(TAG, "ADDED SIZE " + list.size() + " LIST POSITION " + pos);
+
+                // dataList.add(list.get(pos));
+                myAdapter.notifyItemInserted(pos);
+            }
         });
 
         searchBtn.setOnClickListener(click -> {
@@ -156,15 +163,41 @@ public class SunActivity extends AppCompatActivity {
             editor.apply();
 
             if (!longText.isEmpty() && !latText.isEmpty()) {
-                Log.d(TAG, "testing. 1");
+                reqUrl = "https://api.sunrisesunset.io/json?lat=" + latText + "&lng=" + longText +"&timezone=EST&date=today";
 
-                SunDetailsFragment detailsFragment = new SunDetailsFragment(dataList.get(0));
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, reqUrl, null,
+                    (response) -> {
+                        try {
+                            JSONObject result = response.getJSONObject("results");
+                            Log.d(TAG, result.toString());
 
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragmentLocation, detailsFragment)
-                        .addToBackStack("")
-                        .commit();
+                            String sunrise = result.getString("sunrise");
+                            String sunset = result.getString("sunset");
+                            String firstLight = result.getString("first_light");
+                            String lastLight = result.getString("last_light");
+                            String dawn = result.getString("dawn");
+                            String dusk = result.getString("dusk");
+                            String solarNoon = result.getString("solar_noon");
+                            String goldenHour = result.getString("golden_hour");
+                            String dayLength = result.getString("day_length");
+
+                            SunsetData detailsData = new SunsetData(sunrise, sunset, firstLight,
+                                    lastLight, dawn, dusk, solarNoon, goldenHour, dayLength);
+
+                            SunDetailsFragment detailsFragment = new SunDetailsFragment(detailsData, false);
+                            getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.fragmentLocation, detailsFragment)
+                                    .addToBackStack("")
+                                    .commit();
+                        } catch (JSONException exception) {
+                            Toast.makeText(this, R.string.sunset_error, Toast.LENGTH_LONG).show();
+                        }
+                    }, (error) -> {
+                        Toast.makeText(this, R.string.sunset_http_error, Toast.LENGTH_LONG).show();
+                    }
+                );
+                requestQueue.add(request);
             }
         });
     }

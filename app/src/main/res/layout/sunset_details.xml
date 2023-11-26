@@ -215,14 +215,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dayLengthLabel" />
 
-    <Button
-        android:id="@+id/sunsetDeleteBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="#EF6461"
-        android:text="@string/sunset_delete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sunsetSaveBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

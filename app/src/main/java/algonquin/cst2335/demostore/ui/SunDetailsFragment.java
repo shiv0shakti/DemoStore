@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -20,10 +19,13 @@ import algonquin.cst2335.demostore.databinding.SunsetDetailsBinding;
 
 public class SunDetailsFragment extends Fragment {
     private SunsetData sunsetData;
-    protected SunsetViewModel sunsetViewModel;
+    private SunsetViewModel sunsetViewModel;
 
-    public SunDetailsFragment(SunsetData sunsetData) {
+    private boolean isFavourite;
+
+    public SunDetailsFragment(SunsetData sunsetData, boolean isFavourite) {
         this.sunsetData = sunsetData;
+        this.isFavourite = isFavourite;
     }
 
     @Nullable
@@ -33,21 +35,30 @@ public class SunDetailsFragment extends Fragment {
         SunsetDetailsBinding binding = SunsetDetailsBinding.inflate(inflater);
 
         binding.sunriseValue.setText(sunsetData.getSunrise());
+        binding.sunsetValue.setText(sunsetData.getSunset());
+        binding.firstLightValue.setText(sunsetData.getFirstLight());
+        binding.lastLightValue.setText(sunsetData.getLastLight());
+        binding.dawnValue.setText(sunsetData.getDawn());
+        binding.duskValue.setText(sunsetData.getDusk());
+        binding.solarNoonValue.setText(sunsetData.getSolarNoon());
+        binding.goldenHourValue.setText(sunsetData.getGoldenHour());
+        binding.dayLengthValue.setText(sunsetData.getDayLength());
+
         sunsetViewModel = new ViewModelProvider(requireActivity()).get(SunsetViewModel.class);
 
-        binding.sunsetSaveBtn.setOnClickListener(click -> {
-            ArrayList<SunsetData> list = sunsetViewModel.dataList.getValue();
-            Log.d("SunActivityFragment", "TEST_LIST" + list.toString());
+        if (this.isFavourite) {
+            binding.sunsetSaveBtn.setVisibility(View.INVISIBLE);
+        } else {
+            binding.sunsetSaveBtn.setOnClickListener(click -> {
+                ArrayList<SunsetData> list = sunsetViewModel.dataList.getValue();
+                Log.d("SunActivityFragment", "TEST_LIST" + list.toString());
 
-            SunsetData sunsetDataTest2 = new SunsetData(
-                    "TEST",
-                    "8:00 PM",
-                    "6:45 AM",
-                    "8:30 PM"
-            );
-            list.add(sunsetDataTest2);
-            sunsetViewModel.dataList.postValue(list);
-        });
+                list.add(sunsetData);
+                sunsetViewModel.dataList.postValue(list);
+
+                getParentFragmentManager().beginTransaction().remove(this).commit();
+            });
+        }
         return binding.getRoot();
     }
 }

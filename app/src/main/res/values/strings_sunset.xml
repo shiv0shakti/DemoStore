@@ -45,4 +45,6 @@
     <string name="sunset_no">No</string>
     <string name="sunset_undo">Undo</string>
     <string name="sunset_delete">Delete</string>
+    <string name="sunset_error">Something went wrong.</string>
+    <string name="sunset_http_error">Can\'t make request</string>
 </resources>

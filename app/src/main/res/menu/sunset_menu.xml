@@ -3,12 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/sunsetMakeFav"
-        android:title="@string/sunset_make_fav"
-        android:icon="@drawable/ic_sunset_fav"
-        app:showAsAction="always"
-    />
-    <item
         android:id="@+id/sunsetFavsDelete"
         android:title="@string/sunset_delete"
         android:icon="@drawable/ic_sunset_delete"

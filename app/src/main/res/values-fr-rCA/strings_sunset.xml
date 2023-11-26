@@ -9,10 +9,12 @@
     <string name="sunset_make_fav">Favoris</string>
     <string name="sunset_favs">Voir les favoris</string>
     <string name="sunset_help">Aider</string>
+    <string name="app_name">DemoStore</string>
     <string name="sunset_search_activity">Recherche</string>
     <string name="sunset_nothing_to_del">Rien à supprimer</string>
 
     <string name="sunset_saved_to_favs">Enregistré dans les favoris &lt;3</string>
+    <string name="sunset_details_api_title">Réponse de l\'API</string>
     <string name="sunset_sunsrise_label">Lever de soleil</string>
     <string name="sunset_sunset_label">Lever de soleil</string>
     <string name="sunset_first_light_label">Première lumière</string>
@@ -23,6 +25,7 @@
     <string name="sunset_golden_hour_label">L\'heure d\'or</string>
     <string name="sunset_day_length_label">La longueur du jour</string>
 
+    <string name="sunset_location">Localisation</string>
     <string name="sunset_sunsrise_value">Le lever du soleil va ici</string>
     <string name="sunset_sunset_value">Le coucher de soleil va ici</string>
     <string name="sunset_first_light_value">Le premier feu va ici</string>
@@ -45,4 +48,9 @@
     <string name="sunset_delete">Supprimer</string>
     <string name="sunset_error">Quelque chose n\'a pas fonctionné.</string>
     <string name="sunset_http_error">Impossible de faire une demande</string>
+    <string name="sunset_comma">,</string>
+    <string name="sunset_lat_detail_value">Lat</string>
+    <string name="sunset_lng_detail_value">Lng</string>
+    <string name="sunset_details_fav_title">Emplacement préféré</string>
+    <string name="sunsnet_close_details">Fermer</string>
 </resources>

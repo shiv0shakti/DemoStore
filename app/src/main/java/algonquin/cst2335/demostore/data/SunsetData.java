@@ -1,6 +1,9 @@
 package algonquin.cst2335.demostore.data;
 
 public class SunsetData {
+
+    private String lat;
+    private String lng;
     private String sunrise;
     private String sunset;
     private String firstLight;
@@ -12,9 +15,11 @@ public class SunsetData {
     private String dayLength;
 
 
-    public SunsetData(String sunrise, String sunset, String firstLight, String lastLight,
-                      String dawn, String dusk, String solarNoon, String goldenHour,
-                      String dayLength) {
+    public SunsetData(String lat, String lng, String sunrise, String sunset,
+                      String firstLight, String lastLight, String dawn, String dusk,
+                      String solarNoon, String goldenHour, String dayLength) {
+        this.lat = lat;
+        this.lng = lng;
         this.sunrise = sunrise;
         this.sunset = sunset;
         this.firstLight = firstLight;
@@ -24,6 +29,22 @@ public class SunsetData {
         this.solarNoon = solarNoon;
         this.goldenHour = goldenHour;
         this.dayLength = dayLength;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLng() {
+        return lng;
+    }
+
+    public void setLng(String lng) {
+        this.lng = lng;
     }
 
     public String getSunrise() {
@@ -101,7 +122,9 @@ public class SunsetData {
     @Override
     public String toString() {
         return "SunsetData{" +
-                    "sunrise='" + sunrise + '\'' +
+                    "lat='" + lat + '\'' +
+                    ", lng='" + lng + '\'' +
+                    ", sunrise='" + sunrise + '\'' +
                     ", sunset='" + sunset + '\'' +
                     ", firstLight='" + firstLight + '\'' +
                     ", lastLight='" + lastLight + '\'' +

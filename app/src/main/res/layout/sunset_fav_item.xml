@@ -5,13 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:elevation="5dp"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="5dp">
+        >
 
         <TextView
             android:id="@+id/sunsetFavSunriseLabel"
@@ -42,30 +41,32 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="@string/sunset_dawn_label"
             android:textAlignment="textEnd"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sunsetFavSunsetLabel" />
+            app:layout_constraintStart_toEndOf="@+id/sunsetFavSunriseValue"
+            app:layout_constraintTop_toBottomOf="@+id/sunsetPosSunriseLabel" />
 
         <TextView
             android:id="@+id/sunsetFavDuskLabel"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
             android:text="@string/sunset_dusk_label"
             android:textAlignment="textEnd"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/sunsetFavSunsetValue"
             app:layout_constraintTop_toBottomOf="@+id/sunsetFavDawnLabel" />
 
         <TextView
             android:id="@+id/sunsetFavSunriseValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="TextView"
             app:layout_constraintStart_toEndOf="@+id/sunsetFavSunriseLabel"
@@ -75,7 +76,7 @@
             android:id="@+id/sunsetFavSunsetValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:text="TextView"
             app:layout_constraintStart_toEndOf="@+id/sunsetFavSunsetLabel"
@@ -85,23 +86,24 @@
             android:id="@+id/sunsetFavDawnValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="TextView"
             app:layout_constraintStart_toEndOf="@+id/sunsetFavDawnLabel"
-            app:layout_constraintTop_toBottomOf="@+id/sunsetFavSunsetValue" />
+            app:layout_constraintTop_toBottomOf="@+id/sunsetPosSunriseLabel" />
 
         <TextView
             android:id="@+id/sunsetFavDuskValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="32dp"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/sunsetFavDuskLabel"
-            app:layout_constraintTop_toBottomOf="@+id/sunsetFavDawnValue" />
+            app:layout_constraintTop_toBottomOf="@+id/sunsetFavDawnValue"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/sunsetPosSunriseLabel"
@@ -115,14 +117,35 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/sunsetPosSunriseValue"
+            android:id="@+id/sunsetFavTitleLat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="TextView"
+            android:text="@string/sunset_lat_detail_value"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/sunsetPosSunriseLabel"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sunsetFavTitleComma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sunset_comma"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/sunsetFavTitleLat"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sunsetFavTitleLng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/sunset_lng_detail_value"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/sunsetFavTitleLat"
             app:layout_constraintTop_toTopOf="parent" />
 
 

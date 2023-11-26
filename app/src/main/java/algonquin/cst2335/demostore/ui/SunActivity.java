@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -44,15 +45,14 @@ public class SunActivity extends AppCompatActivity {
     protected ArrayList<SunsetData> dataList = new ArrayList<>();
     protected SunsetViewModel sunsetViewModel;
     private RecyclerView.Adapter<MyRowHolder> myAdapter;
-    private int deletePosition;
-    private View posView;
+    private int selectedItemPos;
     private boolean canDelete = false;
     private RequestQueue requestQueue = null;
-
     private String reqUrl;
 
     class MyRowHolder extends RecyclerView.ViewHolder {
-        TextView pos;
+        TextView lat;
+        TextView lng;
         TextView sunrise;
         TextView sunset;
         TextView dawn;
@@ -60,16 +60,26 @@ public class SunActivity extends AppCompatActivity {
 
         public MyRowHolder(@NonNull View itemView) {
             super(itemView);
-            pos = itemView.findViewById(R.id.sunsetPosSunriseValue);
+            lat = itemView.findViewById(R.id.sunsetFavTitleLat);
+            lng = itemView.findViewById(R.id.sunsetFavTitleLng);
             sunrise = itemView.findViewById(R.id.sunsetFavSunriseValue);
             sunset = itemView.findViewById(R.id.sunsetFavSunsetValue);
             dawn = itemView.findViewById(R.id.sunsetFavDawnValue);
             dusk = itemView.findViewById(R.id.sunsetFavDuskValue);
 
             itemView.setOnClickListener(view -> {
-                deletePosition = getAdapterPosition();
-                posView = pos;
+                selectedItemPos = getAdapterPosition();
                 canDelete = true;
+
+                SunsetData selectedData = dataList.get(getAdapterPosition());
+                SunDetailsFragment detailsFragment = new SunDetailsFragment(selectedData, true);
+                myAdapter.notifyDataSetChanged();
+
+                getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentLocation, detailsFragment)
+                    .addToBackStack("")
+                    .commit();
             });
         }
     }
@@ -121,13 +131,19 @@ public class SunActivity extends AppCompatActivity {
             @Override
             public void onBindViewHolder(@NonNull MyRowHolder holder, int position) {
                 SunsetData sunsetData = dataList.get(position);
-                String posText = String.valueOf(position + 1);
 
-                holder.pos.setText(posText);
+                holder.lat.setText(sunsetData.getLat());
+                holder.lng.setText(sunsetData.getLng());
                 holder.sunrise.setText(sunsetData.getSunrise());
                 holder.sunset.setText(sunsetData.getSunset());
                 holder.dawn.setText(sunsetData.getDawn());
                 holder.dusk.setText(sunsetData.getDusk());
+
+                if (selectedItemPos == position) {
+                    holder.itemView.setBackgroundColor(Color.parseColor("#FED07A"));
+                } else {
+                    holder.itemView.setBackgroundColor(Color.TRANSPARENT);
+                }
             }
 
             @Override
@@ -140,15 +156,8 @@ public class SunActivity extends AppCompatActivity {
         myAdapter.notifyItemInserted(dataList.size() - 1);
 
         sunsetViewModel.dataList.observe(this, (list) -> {
-            Log.d(TAG, "ADDED MSG" + list.toString());
             if (list.size() > 0) {
-                SunsetData addedItem = list.get(list.size() - 1);
                 int pos = list.size() - 1;
-
-                Log.d(TAG, "ADDED THIS" + addedItem.toString());
-                Log.d(TAG, "ADDED SIZE " + list.size() + " LIST POSITION " + pos);
-
-                // dataList.add(list.get(pos));
                 myAdapter.notifyItemInserted(pos);
             }
         });
@@ -181,7 +190,7 @@ public class SunActivity extends AppCompatActivity {
                             String goldenHour = result.getString("golden_hour");
                             String dayLength = result.getString("day_length");
 
-                            SunsetData detailsData = new SunsetData(sunrise, sunset, firstLight,
+                            SunsetData detailsData = new SunsetData(latText, longText, sunrise, sunset, firstLight,
                                     lastLight, dawn, dusk, solarNoon, goldenHour, dayLength);
 
                             SunDetailsFragment detailsFragment = new SunDetailsFragment(detailsData, false);
@@ -226,25 +235,25 @@ public class SunActivity extends AppCompatActivity {
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 String msgText = getResources().getString(R.string.sunset_del_fav_msg);
-                String undoTextPos = String.valueOf(deletePosition + 1);
+                String undoTextPos = String.valueOf(selectedItemPos + 1);
 
                 builder.setMessage(msgText + undoTextPos)
                     .setTitle(R.string.sunset_del_fav_title)
                     .setNegativeButton(R.string.sunset_no, (dialogInterface, i) -> {})
                     .setPositiveButton(R.string.sunset_yes, (dialogInterface, i) -> {
-                        SunsetData data = dataList.get(deletePosition);
+                        SunsetData data = dataList.get(selectedItemPos);
                         String undoText = getResources().getString(R.string.sunset_del_succ);
 
-                        dataList.remove(deletePosition);
-                        myAdapter.notifyItemRemoved(deletePosition);
+                        dataList.remove(selectedItemPos);
+                        myAdapter.notifyItemRemoved(selectedItemPos);
 
                         Snackbar.make(
-                            posView,
+                            findViewById(R.id.fragmentLocation),
                             undoText + undoTextPos,
                             Snackbar.LENGTH_LONG)
                         .setAction(R.string.sunset_undo, clk -> {
-                            dataList.add(deletePosition, data);
-                            myAdapter.notifyItemInserted(deletePosition);
+                            dataList.add(selectedItemPos, data);
+                            myAdapter.notifyItemInserted(selectedItemPos);
                         })
                         .show();
 

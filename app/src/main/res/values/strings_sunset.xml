@@ -34,8 +34,7 @@
     <string name="sunset_golden_hour_value">Golden Hour Goes Here</string>
     <string name="sunset_day_length_value">Day Length Goes Here</string>
 
-    <string name="sunset_help_main">Enter a latitude and longitude and search to see sunset and sunrise data. Press the heart icon to add to favourites. Use the help menu to view favourites.</string>
-    <string name="sunset_help_favs">Tap on an item to view details. Press the delete icon to delete the item. Use the help menu to go back to Search.</string>
+    <string name="sunset_help_main">Enter a latitude and longitude and search to see sunset and sunrise data in a fragment. Press the favourite button to add to the favourite list, and press delete to remove the item from favourites.</string>
 
     <string name="sunset_ok">OK</string>
     <string name="sunset_del_fav_msg">Do you want to delete Favourite #</string>

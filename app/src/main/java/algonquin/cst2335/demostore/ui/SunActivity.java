@@ -18,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -91,6 +90,7 @@ public class SunActivity extends AppCompatActivity {
                                     lastLight, dawn, dusk, solarNoon,
                                     goldenHour, dayLength);
 
+                            // need this here to show background color change when selected
                             myAdapter.notifyDataSetChanged();
 
                             SunDetailsFragment detailsFragment = new SunDetailsFragment(detailsData, true);

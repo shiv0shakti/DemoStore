@@ -28,7 +28,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:title="@string/sunset_app_name"
-                app:titleTextColor="#E8CEAE" />
+                app:titleTextColor="@color/sunset_highlight" />
 
             <TextView
                 android:id="@+id/latTitle"

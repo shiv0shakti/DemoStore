@@ -159,12 +159,6 @@ public class SunActivity extends AppCompatActivity {
         }
 
         binding.sunsetFavsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-//
-//        dataList = sunsetViewModel.dataList.getValue();
-//
-//        if (dataList == null) {
-//            sunsetViewModel.dataList.postValue(dataList = new ArrayList<SunsetData>());
-//        }
 
         binding.sunsetFavsRecyclerView.setAdapter(myAdapter = new RecyclerView.Adapter<MyRowHolder>() {
             @NonNull

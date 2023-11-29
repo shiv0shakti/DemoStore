@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -31,25 +32,30 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import algonquin.cst2335.demostore.R;
 import algonquin.cst2335.demostore.data.SunsetApiData;
 import algonquin.cst2335.demostore.data.SunsetData;
+import algonquin.cst2335.demostore.data.SunsetDataDao;
+import algonquin.cst2335.demostore.data.SunsetDatabase;
 import algonquin.cst2335.demostore.data.SunsetViewModel;
 import algonquin.cst2335.demostore.databinding.ActivitySunBinding;
 import algonquin.cst2335.demostore.databinding.SunsetFavItemBinding;
 
 public class SunActivity extends AppCompatActivity {
-
     private static final String TAG = SunActivity.class.getName();
     private ActivitySunBinding binding;
-    protected ArrayList<SunsetData> dataList = new ArrayList<>();
-    protected SunsetViewModel sunsetViewModel;
+    private ArrayList<SunsetData> dataList = new ArrayList<>();
+    private SunsetViewModel sunsetViewModel;
+    private SunsetDataDao sunsetDataDao;
     private RecyclerView.Adapter<MyRowHolder> myAdapter;
     private int selectedItemPos;
     private boolean canDelete = false;
     private RequestQueue requestQueue = null;
     private String reqUrl;
+
 
     class MyRowHolder extends RecyclerView.ViewHolder {
         TextView lat;
@@ -65,6 +71,7 @@ public class SunActivity extends AppCompatActivity {
                 canDelete = true;
 
                 SunsetData selectedData = dataList.get(getAdapterPosition());
+                sunsetViewModel.selectedSunsetData.postValue(selectedData);
 
                 reqUrl = "https://api.sunrisesunset.io/json?lat=" + selectedData.getLat() + "&lng=" + selectedData.getLng() +"&timezone=EST&date=today";
 
@@ -121,6 +128,14 @@ public class SunActivity extends AppCompatActivity {
 
         requestQueue = Volley.newRequestQueue(this);
 
+        SunsetDatabase database = Room.databaseBuilder(
+            getApplicationContext(),
+            SunsetDatabase.class,
+            "sunset-database"
+        ).build();
+
+        sunsetDataDao = database.sunsetDataDao();
+
         SharedPreferences preferences = getSharedPreferences("SunsetData", Context.MODE_PRIVATE);
         String latData = preferences.getString("Latitude", "");
         String longData = preferences.getString("Longitude", "");
@@ -132,20 +147,25 @@ public class SunActivity extends AppCompatActivity {
         latField.setText(latData);
         longField.setText(longData);
 
-        sunsetViewModel = new ViewModelProvider(this).get(SunsetViewModel.class);
-        dataList = sunsetViewModel.dataList.getValue();
 
-        if (dataList == null) {
+        sunsetViewModel = new ViewModelProvider(this).get(SunsetViewModel.class);
+
+        if (dataList == null || dataList.size() == 0) {
+            //dataList = sunsetViewModel.dataList.getValue();
+            Executors.newSingleThreadExecutor().execute(() -> {
+                dataList.addAll(sunsetDataDao.getAllSunsetData());
+                runOnUiThread(() -> binding.sunsetFavsRecyclerView.setAdapter(myAdapter));
+            });
             sunsetViewModel.dataList.postValue(dataList = new ArrayList<SunsetData>());
         }
 
-        sunsetViewModel = new ViewModelProvider(this).get(SunsetViewModel.class);
         binding.sunsetFavsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        dataList = sunsetViewModel.dataList.getValue();
-
-        if (dataList == null) {
-            sunsetViewModel.dataList.postValue(dataList = new ArrayList<SunsetData>());
-        }
+//
+//        dataList = sunsetViewModel.dataList.getValue();
+//
+//        if (dataList == null) {
+//            sunsetViewModel.dataList.postValue(dataList = new ArrayList<SunsetData>());
+//        }
 
         binding.sunsetFavsRecyclerView.setAdapter(myAdapter = new RecyclerView.Adapter<MyRowHolder>() {
             @NonNull
@@ -185,6 +205,10 @@ public class SunActivity extends AppCompatActivity {
         sunsetViewModel.dataList.observe(this, (list) -> {
             if (list.size() > 0) {
                 int pos = list.size() - 1;
+
+                Executors.newSingleThreadExecutor().execute(() -> {
+                    sunsetDataDao.insertSunsetData(list.get(list.size() - 1));
+                });
                 myAdapter.notifyItemInserted(pos);
             }
         });
@@ -270,23 +294,30 @@ public class SunActivity extends AppCompatActivity {
                     .setTitle(R.string.sunset_del_fav_title)
                     .setNegativeButton(R.string.sunset_no, (dialogInterface, i) -> {})
                     .setPositiveButton(R.string.sunset_yes, (dialogInterface, i) -> {
-                        SunsetData data = dataList.get(selectedItemPos);
                         String undoText = getResources().getString(R.string.sunset_del_succ);
 
-                        dataList.remove(selectedItemPos);
+                        Executors.newSingleThreadExecutor().execute(() -> {
+                            SunsetData dbData = sunsetDataDao.getAllSunsetData().get(selectedItemPos);
+                            sunsetDataDao.deleteSunsetData(dbData);
+                            dataList.remove(selectedItemPos);
+                        });
                         myAdapter.notifyItemRemoved(selectedItemPos);
+                        canDelete = false;
 
                         Snackbar.make(
                             findViewById(R.id.fragmentLocation),
                             undoText + undoTextPos,
                             Snackbar.LENGTH_LONG)
                         .setAction(R.string.sunset_undo, clk -> {
-                            dataList.add(selectedItemPos, data);
+                            Executors.newSingleThreadExecutor().execute(() -> {
+                                SunsetData dbData = sunsetDataDao.getAllSunsetData().get(selectedItemPos);
+                                sunsetDataDao.insertSunsetData(dbData);
+                                dataList.add(selectedItemPos, dbData);
+                            });
                             myAdapter.notifyItemInserted(selectedItemPos);
+                            canDelete = true;
                         })
                         .show();
-
-                        canDelete = false;
                     })
                     .create().show();
             }

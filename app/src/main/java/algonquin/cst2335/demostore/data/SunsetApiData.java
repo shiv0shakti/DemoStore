@@ -101,7 +101,8 @@ public class SunsetApiData extends SunsetData {
     @Override
     public String toString() {
         return "SunsetApiData{" +
-                    "lat='" + super.getLat() + '\'' +
+                    "id=" + super.getId() +
+                    ", lat='" + super.getLat() + '\'' +
                     ", lng='" + super.getLng() + '\'' +
                     ", sunrise='" + sunrise + '\'' +
                     ", sunset='" + sunset + '\'' +

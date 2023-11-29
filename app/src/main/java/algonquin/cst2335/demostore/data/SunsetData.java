@@ -1,12 +1,30 @@
 package algonquin.cst2335.demostore.data;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class SunsetData {
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    public int id;
+    @ColumnInfo(name = "lat")
     private String lat;
+    @ColumnInfo(name = "lng")
     private String lng;
 
     public SunsetData(String lat, String lng) {
         this.lat = lat;
         this.lng = lng;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLat() {
@@ -28,7 +46,8 @@ public class SunsetData {
     @Override
     public String toString() {
         return "SunsetData{" +
-                    "lat='" + lat + '\'' +
+                    "id=" + id +
+                    ", lat='" + lat + '\'' +
                     ", lng='" + lng + '\'' +
                 '}';
     }

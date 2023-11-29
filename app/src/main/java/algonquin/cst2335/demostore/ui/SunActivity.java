@@ -51,11 +51,10 @@ public class SunActivity extends AppCompatActivity {
     private SunsetViewModel sunsetViewModel;
     private SunsetDataDao sunsetDataDao;
     private RecyclerView.Adapter<MyRowHolder> myAdapter;
-    private int selectedItemPos;
+    private int selectedItemPos = -1;
     private boolean canDelete = false;
     private RequestQueue requestQueue = null;
     private String reqUrl;
-
 
     class MyRowHolder extends RecyclerView.ViewHolder {
         TextView lat;
@@ -294,6 +293,7 @@ public class SunActivity extends AppCompatActivity {
                     .setTitle(R.string.sunset_del_fav_title)
                     .setNegativeButton(R.string.sunset_no, (dialogInterface, i) -> {})
                     .setPositiveButton(R.string.sunset_yes, (dialogInterface, i) -> {
+                        SunsetData data = dataList.get(selectedItemPos);
                         String undoText = getResources().getString(R.string.sunset_del_succ);
 
                         Executors.newSingleThreadExecutor().execute(() -> {
@@ -310,12 +310,11 @@ public class SunActivity extends AppCompatActivity {
                             Snackbar.LENGTH_LONG)
                         .setAction(R.string.sunset_undo, clk -> {
                             Executors.newSingleThreadExecutor().execute(() -> {
-                                SunsetData dbData = sunsetDataDao.getAllSunsetData().get(selectedItemPos);
-                                sunsetDataDao.insertSunsetData(dbData);
-                                dataList.add(selectedItemPos, dbData);
+                                sunsetDataDao.insertSunsetData(data);
+                                dataList.add(selectedItemPos, data);
+                                canDelete = true;
                             });
                             myAdapter.notifyItemInserted(selectedItemPos);
-                            canDelete = true;
                         })
                         .show();
                     })

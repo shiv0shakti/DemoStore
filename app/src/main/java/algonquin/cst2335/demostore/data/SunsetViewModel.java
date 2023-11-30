@@ -5,6 +5,11 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
+/**
+ *
+ *
+ * @author Roy S
+ */
 public class SunsetViewModel extends ViewModel {
     public MutableLiveData<ArrayList<SunsetData>> dataList = new MutableLiveData<>();
     public MutableLiveData<SunsetData> selectedSunsetData = new MutableLiveData<>();

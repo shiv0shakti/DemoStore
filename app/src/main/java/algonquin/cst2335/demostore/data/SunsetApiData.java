@@ -1,5 +1,11 @@
 package algonquin.cst2335.demostore.data;
 
+/**
+ *
+ *
+ * @author Roy S
+ * @version 1.0
+ */
 public class SunsetApiData extends SunsetData {
     private String sunrise;
     private String sunset;

@@ -7,6 +7,11 @@ import androidx.room.Query;
 
 import java.util.List;
 
+/**
+ *
+ *
+ * @author Roy S
+ */
 @Dao
 public interface SunsetDataDao {
     @Insert

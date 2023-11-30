@@ -4,6 +4,11 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/**
+ *
+ *
+ * @author Roy S
+ */
 @Entity
 public class SunsetData {
     @PrimaryKey(autoGenerate = true)

@@ -409,7 +409,7 @@ public class SunActivity extends AppCompatActivity {
                         Snackbar.make(
                             findViewById(R.id.fragmentLocation),
                             undoText + undoTextPos,
-                            Snackbar.LENGTH_LONG)
+                            Snackbar.LENGTH_SHORT)
                         .setAction(R.string.sunset_undo, clk -> {
                             // re-insert the data if the user presses undo
                             Executors.newSingleThreadExecutor().execute(() -> {

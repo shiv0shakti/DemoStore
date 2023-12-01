@@ -13,6 +13,7 @@
     <string name="sunset_fav_title">Favourite</string>
     <string name="sunset_nothing">Nothing to save</string>
     <string name="sunset_nothing_to_del">Nothing to delete</string>
+    <string name="sunset_search_activity">Search</string>
 
     <string name="sunsnet_close_details">Close</string>
     <string name="sunset_details_api_title">API Response</string>

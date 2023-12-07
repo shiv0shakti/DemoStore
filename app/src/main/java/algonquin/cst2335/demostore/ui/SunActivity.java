@@ -54,7 +54,6 @@ import algonquin.cst2335.demostore.databinding.SunsetFavItemBinding;
  * @author Roy S
  */
 public class SunActivity extends AppCompatActivity {
-
     /** Class Tag for Logcat */
     private static final String TAG = SunActivity.class.getName();
 

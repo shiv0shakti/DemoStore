@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sunset_app_name">Coucher API</string>
+    <string name="sunset_lat">La Lattitude</string>
+    <string name="sunset_lat_hint">Entrez la latitude…</string>
+    <string name="sunset_long">La Longitude</string>
+    <string name="sunset_long_hint">Entrez la longitude…</string>
+    <string name="sunset_search">Recherche</string>
+    <string name="sunset_make_fav">Favoris</string>
+    <string name="sunset_favs">Voir les favoris</string>
+    <string name="sunset_help">Aider</string>
+    <string name="app_name">DemoStore</string>
+    <string name="sunset_search_activity">Recherche</string>
+    <string name="sunset_nothing_to_del">Rien à supprimer</string>
+
+    <string name="sunset_saved_to_favs">Enregistré dans les favoris &lt;3</string>
+    <string name="sunset_details_api_title">Réponse de l\'API</string>
+    <string name="sunset_sunsrise_label">Lever de soleil</string>
+    <string name="sunset_sunset_label">Lever de soleil</string>
+    <string name="sunset_first_light_label">Première lumière</string>
+    <string name="sunset_last_light_label">Dernière lumière</string>
+    <string name="sunset_dawn_label">Aube</string>
+    <string name="sunset_dusk_label">Crépuscule</string>
+    <string name="sunset_solar_noon_label">Le midi solaire</string>
+    <string name="sunset_golden_hour_label">L\'heure d\'or</string>
+    <string name="sunset_day_length_label">La longueur du jour</string>
+
+    <string name="sunset_location">Localisation</string>
+    <string name="sunset_sunsrise_value">Le lever du soleil va ici</string>
+    <string name="sunset_sunset_value">Le coucher de soleil va ici</string>
+    <string name="sunset_first_light_value">Le premier feu va ici</string>
+    <string name="sunset_last_light_value">La dernière lumière va ici</string>
+    <string name="sunset_dawn_value">L\'aube va ici</string>
+    <string name="sunset_dusk_value">Le crépuscule va ici</string>
+    <string name="sunset_solar_noon_value">Le midi solaire va ici</string>
+    <string name="sunset_golden_hour_value">L\'heure d\'or va ici</string>
+    <string name="sunset_day_length_value">La longueur du jour va ici</string>
+    <string name="sunset_fav_title">Favori</string>
+    <string name="sunset_help_main">Saisissez une latitude et une longitude et effectuez une recherche pour connaître les détails du coucher et du lever du soleil. Appuyez sur le bouton favori dans l\'écran des détails pour enregistrer un emplacement favori. Utilisez le bouton Supprimer dans la barre d\'outils pour supprimer un élément favori.</string>
+    <string name="sunset_ok">OK</string>
+    <string name="sunset_del_fav_msg">Voulez-vous supprimer les favoris #</string>
+    <string name="sunset_del_fav_title">Supprimer le favori</string>
+    <string name="sunset_del_succ">Vous avez supprimé le favori #</string>
+    <string name="sunset_yes">Oui</string>
+    <string name="sunset_no">Non</string>
+    <string name="sunset_undo">Annuler</string>
+    <string name="sunset_nothing">Rien à sauver</string>
+    <string name="sunset_delete">Supprimer</string>
+    <string name="sunset_error">Quelque chose n\'a pas fonctionné.</string>
+    <string name="sunset_http_error">Impossible de faire une demande</string>
+    <string name="sunset_comma">,</string>
+    <string name="sunset_lat_detail_value">Lat</string>
+    <string name="sunset_lng_detail_value">Lng</string>
+    <string name="sunset_details_fav_title">Emplacement préféré</string>
+    <string name="sunsnet_close_details">Fermer</string>
+    <string name="sunset_no_search_terms">Veuillez saisir une latitude et une longitude</string>
+</resources>

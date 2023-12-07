@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sunset_app_name">Sunset API</string>
+    <string name="sunset_lat">Latitude</string>
+    <string name="sunset_lat_hint">Enter the Latitude…</string>
+    <string name="sunset_long">Longitude</string>
+    <string name="sunset_long_hint">Enter the Longitude…</string>
+    <string name="sunset_search">Search</string>
+    <string name="sunset_make_fav">Favourite</string>
+    <string name="sunset_favs">View Favourites</string>
+    <string name="sunset_help">Help</string>
+    <string name="sunset_saved_to_favs">Saved to favourites &lt;3</string>
+    <string name="sunset_fav_title">Favourite</string>
+    <string name="sunset_nothing">Nothing to save</string>
+    <string name="sunset_nothing_to_del">Nothing to delete</string>
+    <string name="sunset_search_activity">Search</string>
+
+    <string name="sunsnet_close_details">Close</string>
+    <string name="sunset_details_api_title">API Response</string>
+    <string name="sunset_details_fav_title">Favourite Location</string>
+    <string name="sunset_sunsrise_label">Sunrise</string>
+    <string name="sunset_sunset_label">Sunset</string>
+    <string name="sunset_first_light_label">First Light</string>
+    <string name="sunset_last_light_label">Last Light</string>
+    <string name="sunset_dawn_label">Dawn</string>
+    <string name="sunset_dusk_label">Dusk</string>
+    <string name="sunset_solar_noon_label">Solar Noon</string>
+    <string name="sunset_golden_hour_label">Golden Hour</string>
+    <string name="sunset_day_length_label">Day Length</string>
+    <string name="sunset_location">Location</string>
+    <string name="sunset_comma">,</string>
+    <string name="sunset_lat_detail_value">Lat</string>
+    <string name="sunset_lng_detail_value">Lng</string>
+    <string name="sunset_sunsrise_value">Sunrise Goes Here</string>
+    <string name="sunset_sunset_value">Sunset Goes Here</string>
+    <string name="sunset_first_light_value">First Light Goes Here</string>
+    <string name="sunset_last_light_value">Last Light Goes Here</string>
+    <string name="sunset_dawn_value">Dawn Goes Here</string>
+    <string name="sunset_dusk_value">Dusk Goes Here</string>
+    <string name="sunset_solar_noon_value">Solar Noon Goes Here</string>
+    <string name="sunset_golden_hour_value">Golden Hour Goes Here</string>
+    <string name="sunset_day_length_value">Day Length Goes Here</string>
+
+    <string name="sunset_help_main">Enter a latitude and longitude and search to see sunset and sunrise details. Press the favourite button in the details screen to save a favourite location. Use the delete button in the toolbar to delete a favourite item. </string>
+    <string name="sunset_ok">OK</string>
+    <string name="sunset_del_fav_msg">Do you want to delete Favourite #</string>
+    <string name="sunset_del_fav_title">Delete Favourite</string>
+    <string name="sunset_del_succ">You deleted favourite #</string>
+    <string name="sunset_yes">Yes</string>
+    <string name="sunset_no">No</string>
+    <string name="sunset_undo">Undo</string>
+    <string name="sunset_delete">Delete</string>
+    <string name="sunset_error">Something went wrong.</string>
+    <string name="sunset_http_error">Can\'t make request</string>
+    <string name="sunset_no_search_terms">Please enter a Latitude and Longitude</string>
+</resources>

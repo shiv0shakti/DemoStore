@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -95,6 +95,7 @@ public class DeezerActivity extends AppCompatActivity {
          searchEditText = findViewById(R.id.searchEditText);
          searchButton = findViewById(R.id.searchButton);
 
+        recyclerView = findViewById(R.id.deezerRecyclerView);
 
 
         albumCoverImageView = findViewById(R.id.albumCoverImageView);
@@ -146,11 +147,6 @@ public class DeezerActivity extends AppCompatActivity {
             return false;
         });
     }
-
-    private void setSupportActionBar(Toolbar toolbar) {
-
-    }
-
 
     private void onItemClick(@NonNull ArtistSearch.Song song) {
         Intent detailsIntent = new Intent(this, ArtistSearch.Song.class);
